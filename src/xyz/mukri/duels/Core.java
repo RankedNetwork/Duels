@@ -2,7 +2,9 @@ package xyz.mukri.duels;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import xyz.mukri.duels.arena.Arena;
 import xyz.mukri.duels.arena.ArenaManager;
 import xyz.mukri.duels.commands.DuelsCmd;
 import xyz.mukri.duels.file.ArenaFile;
@@ -34,6 +36,17 @@ public class Core extends JavaPlugin {
 
     @Override
     public void onDisable() {
+
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            Arena arena = arenaManager.getPlayersArena(p.getUniqueId());
+
+            if (arena != null) {
+                if (arena.getPlayers().contains(p.getUniqueId())) {
+                    arena.userLeave(p);
+                }
+            }
+        }
+
         getLogger().info("Dules is now disabled.");
     }
 

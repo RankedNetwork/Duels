@@ -39,6 +39,10 @@ public class ArenaManager {
         return null;
     }
 
+    public void addArena(Arena a) {
+        arenas.add(a);
+    }
+
     public void loadAllArena() {
 
         if (plugin.arenaFile.getConfig().getConfigurationSection("arena") == null) {

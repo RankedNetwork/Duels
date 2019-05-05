@@ -32,6 +32,19 @@ public class DuelsCmd implements CommandExecutor {
             // EG: /duels test
             else if (args.length == 1) {
 
+                if (args[0].equalsIgnoreCase("leave")) {
+                    Arena arena = Core.getInstance().arenaManager.getPlayersArena(p.getUniqueId());
+
+                    if (arena != null) {
+                        if (arena.getPlayers().contains(p.getUniqueId())) {
+                            arena.userLeave(p);
+                        }
+                        else {
+                            p.sendMessage("You are not in a game");
+                        }
+                    }
+                }
+
             }
 
             // EG: /duels addarena arenaname
@@ -44,7 +57,13 @@ public class DuelsCmd implements CommandExecutor {
 
                     if (arena == null) {
                         // TODO: Add arena to config and to the arena manager
+
+                        Arena newArena = new Arena(arenaName, null);
+
+                        Core.getInstance().arenaManager.addArena(newArena);
                         Core.getInstance().arenaFile.addNewArena(arenaName);
+
+                        p.sendMessage("Added a new arena called '" + arenaName + "'.");
                     }
                     else {
                         p.sendMessage("Arena with the name of '" + arenaName + "' already existed.");
@@ -58,6 +77,8 @@ public class DuelsCmd implements CommandExecutor {
 
                     if (arena != null) {
                         // TODO: Update arena location
+                        arena.setSpawn(p.getLocation());
+
                         Core.getInstance().arenaFile.setArenaSpawn(p.getLocation(), arena);
                         Core.getInstance().arenaFile.save();
                         p.sendMessage("Updated spawn location to your current location.");
@@ -66,6 +87,19 @@ public class DuelsCmd implements CommandExecutor {
                         p.sendMessage("Arena '" + arenaName + "' does not exists.");
                     }
 
+                }
+
+                else if (args[0].equals("join")) {
+                    String arenaName = args[1];
+
+                    Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
+
+                    if (arena != null) {
+                        arena.userJoin(p);
+                    }
+                    else {
+                        p.sendMessage("Arena does not exists!");
+                    }
                 }
 
             }

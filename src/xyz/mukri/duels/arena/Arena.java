@@ -2,9 +2,9 @@ package xyz.mukri.duels.arena;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
-import java.util.UUID;
-import java.util.List;
+import java.util.*;
 
 public class Arena {
 
@@ -20,6 +20,8 @@ public class Arena {
 
     private Timer timer;
 
+    private Map<UUID, Location> playerLoc;
+
     public Arena( String name, Location spawnLoc) {
         this.name = name;
         this.spawnLoc = spawnLoc;
@@ -28,6 +30,9 @@ public class Arena {
 
         state = GameState.LOBBY;
 
+        players =  new ArrayList<>();
+        playerLoc = new HashMap<>();
+
         timer = new Timer(this);
     }
 
@@ -35,6 +40,33 @@ public class Arena {
     public void broadcastMessage(String msg) {
         for (int i = 0; i < players.size(); i++) {
             Bukkit.getPlayer(players.get(i)).sendMessage(msg);
+        }
+    }
+
+    public void userJoin(Player p) {
+        if (!players.contains(p.getUniqueId())) {
+            if (spawnLoc != null) {
+                playerLoc.put(p.getUniqueId(), p.getLocation());
+                p.teleport(spawnLoc);
+                players.add(p.getUniqueId());
+            }
+            else {
+                p.sendMessage("Arena spawn has not been set.");
+            }
+        }
+        else {
+            p.sendMessage("You already ingame");
+        }
+    }
+
+    public void userLeave(Player p) {
+        if (players.contains(p.getUniqueId())) {
+            if (playerLoc.containsKey(p.getUniqueId())) {
+                p.teleport(playerLoc.get(p.getUniqueId()));
+            }
+
+            players.remove(p.getUniqueId());
+            p.sendMessage("You left the game.");
         }
     }
 
@@ -47,9 +79,13 @@ public class Arena {
         return this.players;
     }
 
+    public Location getSpawn() { return this.spawnLoc; }
+
     // Setters
     public void setState(GameState state) {
         this.state = state;
     }
+
+    public void setSpawn(Location loc) { this.spawnLoc = loc; }
 
 }
