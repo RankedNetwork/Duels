@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import xyz.mukri.duels.arena.Arena;
 import xyz.mukri.duels.arena.ArenaManager;
 import xyz.mukri.duels.commands.DuelsCmd;
+import xyz.mukri.duels.events.JoinAndQuitEvents;
 import xyz.mukri.duels.file.ArenaFile;
 
 public class Core extends JavaPlugin {
@@ -55,7 +56,7 @@ public class Core extends JavaPlugin {
     }
 
     public void registerListeners() {
-
+        getServer().getPluginManager().registerEvents(new JoinAndQuitEvents(), this);
     }
 
     public static Core getInstance() {
