@@ -3,3 +3,6 @@ name: Duels
 version: 0.0.1
 description: A duel minecraft plugin
 author: Mukri.xyz
+commands:
+  duels:
+    description: Duels commands.

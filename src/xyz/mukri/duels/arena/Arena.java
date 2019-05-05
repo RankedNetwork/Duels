@@ -1,5 +1,6 @@
 package xyz.mukri.duels.arena;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import java.util.UUID;
@@ -7,23 +8,37 @@ import java.util.List;
 
 public class Arena {
 
-    private int id;
+    private int maxPlayers;
+
     private String name;
+
     private Location spawnLoc;
+
     private GameState state;
+
     private List<UUID> players;
 
-    public Arena(int id, String name, Location spawnLoc) {
-        this.id = id;
+    private Timer timer;
+
+    public Arena( String name, Location spawnLoc) {
         this.name = name;
         this.spawnLoc = spawnLoc;
+
+        maxPlayers = 2;
+
+        state = GameState.LOBBY;
+
+        timer = new Timer(this);
+    }
+
+    // Functions
+    public void broadcastMessage(String msg) {
+        for (int i = 0; i < players.size(); i++) {
+            Bukkit.getPlayer(players.get(i)).sendMessage(msg);
+        }
     }
 
     // Getters
-    public int getArenaId() {
-        return this.id;
-    }
-
     public String getArenaName() {
         return this.name;
     }
@@ -32,5 +47,9 @@ public class Arena {
         return this.players;
     }
 
+    // Setters
+    public void setState(GameState state) {
+        this.state = state;
+    }
 
 }
