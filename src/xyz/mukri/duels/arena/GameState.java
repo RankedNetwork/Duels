@@ -1,5 +1,5 @@
 package xyz.mukri.duels.arena;
 
 public enum GameState {
-    LOBBY, START, END;
+    IDLE, LOBBY, START, END;
 }

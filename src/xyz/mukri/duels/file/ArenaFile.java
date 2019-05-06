@@ -66,6 +66,8 @@ public class ArenaFile {
 
         config.set("arena." + name + ".name", name);
         config.set("arena." + name + ".spawn", "NONE");
+        config.set("arena." + name + ".spawn-one", "NONE");
+        config.set("arena." + name + ".spawn-two", "NONE");
 
         save();
     }
@@ -74,6 +76,17 @@ public class ArenaFile {
         String location = getInstance().locationToString(loc);
 
         config.set("arena." + arena.getArenaName() + ".spawn", location);
+    }
+
+    public void setPlayerSpawn(Location loc, Arena arena, int playerSpawn) {
+        String location = getInstance().locationToString(loc);
+
+        if (playerSpawn == 1) {
+            config.set("arena." + arena.getArenaName() + ".spawn-one", location);
+        }
+        else {
+            config.set("arena." + arena.getArenaName() + ".spawn-two", location);
+        }
     }
 
 }

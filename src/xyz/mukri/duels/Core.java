@@ -2,19 +2,29 @@ package xyz.mukri.duels;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.mukri.duels.arena.Arena;
 import xyz.mukri.duels.arena.ArenaManager;
 import xyz.mukri.duels.commands.DuelsCmd;
+import xyz.mukri.duels.events.InventoryEvents;
 import xyz.mukri.duels.events.JoinAndQuitEvents;
 import xyz.mukri.duels.file.ArenaFile;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Core extends JavaPlugin {
 
     private static Core instance;
     public ArenaFile arenaFile;
     public ArenaManager arenaManager;
+
+    public Map<Player, Arena> playerSettings = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -56,15 +66,12 @@ public class Core extends JavaPlugin {
     }
 
     public void registerListeners() {
+        getServer().getPluginManager().registerEvents(new InventoryEvents(this), this);
         getServer().getPluginManager().registerEvents(new JoinAndQuitEvents(), this);
     }
 
     public static Core getInstance() {
         return instance;
-    }
-
-    public String replaceColor(String text) {
-        return text.replaceAll("&", "§");
     }
 
     public String locationToString(Location loc) {
@@ -74,6 +81,18 @@ public class Core extends JavaPlugin {
     public Location stringToLocation(String s) {
         String[] loc = s.split(":");
         return new Location(Bukkit.getWorld(loc[0]), Integer.parseInt(loc[1]), Integer.parseInt(loc[2]), Integer.parseInt(loc[3]));
+    }
+
+    public ItemStack createItem(Material material, String name, List<String> lore) {
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+
+        meta.setDisplayName(name);
+        meta.setLore(lore);
+
+        item.setItemMeta(meta);
+
+        return item;
     }
 
 }

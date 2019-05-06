@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.mukri.duels.Core;
 import xyz.mukri.duels.arena.Arena;
+import xyz.mukri.duels.utils.CustomInventory;
 
 public class DuelsCmd implements CommandExecutor {
 
@@ -58,7 +59,7 @@ public class DuelsCmd implements CommandExecutor {
                     if (arena == null) {
                         // TODO: Add arena to config and to the arena manager
 
-                        Arena newArena = new Arena(arenaName, null);
+                        Arena newArena = new Arena(arenaName, null, null, null);
 
                         Core.getInstance().arenaManager.addArena(newArena);
                         Core.getInstance().arenaFile.addNewArena(arenaName);
@@ -76,12 +77,47 @@ public class DuelsCmd implements CommandExecutor {
                     Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
 
                     if (arena != null) {
-                        // TODO: Update arena location
                         arena.setSpawn(p.getLocation());
 
                         Core.getInstance().arenaFile.setArenaSpawn(p.getLocation(), arena);
                         Core.getInstance().arenaFile.save();
                         p.sendMessage("Updated spawn location to your current location.");
+                    }
+                    else {
+                        p.sendMessage("Arena '" + arenaName + "' does not exists.");
+                    }
+
+                }
+
+                else if (args[0].equalsIgnoreCase("setspawn1")) {
+                    String arenaName = args[1];
+
+                    Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
+
+                    if (arena != null) {
+                        arena.setPlayerOneSpawn(p.getLocation());
+
+                        Core.getInstance().arenaFile.setPlayerSpawn(p.getLocation(), arena, 1);
+                        Core.getInstance().arenaFile.save();
+                        p.sendMessage("Updated the spawn for player 1.");
+                    }
+                    else {
+                        p.sendMessage("Arena '" + arenaName + "' does not exists.");
+                    }
+
+                }
+
+                else if (args[0].equalsIgnoreCase("setspawn2")) {
+                    String arenaName = args[1];
+
+                    Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
+
+                    if (arena != null) {
+                        arena.setPlayerTwoSpawn(p.getLocation());
+
+                        Core.getInstance().arenaFile.setPlayerSpawn(p.getLocation(), arena, 2);
+                        Core.getInstance().arenaFile.save();
+                        p.sendMessage("Updated the spawn for player 2.");
                     }
                     else {
                         p.sendMessage("Arena '" + arenaName + "' does not exists.");
@@ -99,6 +135,20 @@ public class DuelsCmd implements CommandExecutor {
                     }
                     else {
                         p.sendMessage("Arena does not exists!");
+                    }
+                }
+
+                else if (args[0].equalsIgnoreCase("settings")) {
+                    String arenaName = args[1];
+
+                    Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
+
+                    if (arena != null) {
+                        Core.getInstance().playerSettings.put(p, arena);
+                        CustomInventory.openArenaSettings(p, arena);
+                    }
+                    else {
+                        p.sendMessage("Arena does not exists.");
                     }
                 }
 

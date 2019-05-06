@@ -53,17 +53,18 @@ public class ArenaManager {
         for (String a : plugin.arenaFile.getConfig().getConfigurationSection("arena").getKeys(false)) {
 
             String arenaName = plugin.arenaFile.getConfig().getString("arena." + a + ".name");
-            String locStr = plugin.arenaFile.getConfig().getString("arena." + a + ".spawn");
-            Location loc;
 
-            if (locStr.equals("NONE")) {
-                loc = null;
-            }
-            else {
-                loc = Core.getInstance().stringToLocation(locStr);
-            }
+            Location playerOneLoc = plugin.arenaFile.getConfig().getString("arena." + a + ".spawn-one").equals("NONE")
+                    ? null : plugin.getInstance().stringToLocation(plugin.arenaFile.getConfig().getString("arena." + a + ".spawn-one"));
 
-            Arena arena = new Arena(arenaName, loc);
+            Location playerTwoLoc = plugin.arenaFile.getConfig().getString("arena." + a + ".spawn-two").equals("NONE")
+                    ? null : plugin.getInstance().stringToLocation(plugin.arenaFile.getConfig().getString("arena." + a + ".spawn-two"));
+
+            Location loc = plugin.arenaFile.getConfig().getString("arena." + a + ".spawn").equals("NONE")
+                    ? null : plugin.getInstance().stringToLocation(plugin.arenaFile.getConfig().getString("arena." + a + ".spawn"));
+
+
+            Arena arena = new Arena(arenaName, loc, playerOneLoc, playerTwoLoc);
             arenas.add(arena);
 
         }
