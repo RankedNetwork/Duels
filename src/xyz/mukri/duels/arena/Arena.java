@@ -3,6 +3,8 @@ package xyz.mukri.duels.arena;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
@@ -11,6 +13,7 @@ public class Arena {
     private int maxPlayers;
 
     private String name;
+    private String winner;
 
     private Location spawnLoc;
     private Location playerOneLoc;
@@ -22,13 +25,15 @@ public class Arena {
 
     private Timer timer;
 
-    private Map<UUID, Location> playerLoc;
+    public Map<UUID, Location> playerLoc;
+    public Map<UUID, ItemStack[]> playerInv;
 
     public Arena( String name, Location spawnLoc, Location playerOne, Location playerTwo) {
         this.name = name;
         this.spawnLoc = spawnLoc;
         this.playerOneLoc = playerOne;
         this.playerTwoLoc = playerTwo;
+        this.winner = null;
 
         maxPlayers = 2;
 
@@ -36,6 +41,7 @@ public class Arena {
 
         players =  new ArrayList<>();
         playerLoc = new HashMap<>();
+        playerInv = new HashMap<>();
 
         timer = new Timer(this);
         timer.start();
@@ -52,9 +58,16 @@ public class Arena {
         if (!players.contains(p.getUniqueId())) {
             if (spawnLoc != null || playerOneLoc != null || playerTwoLoc != null) {
                 if (players.size() < maxPlayers) {
-                    playerLoc.put(p.getUniqueId(), p.getLocation());
-                    p.teleport(spawnLoc);
+
                     players.add(p.getUniqueId());
+
+                    playerInv.put(p.getUniqueId(), p.getInventory().getContents());
+                    playerLoc.put(p.getUniqueId(), p.getLocation());
+
+                    p.getInventory().clear();
+                    p.teleport(spawnLoc);
+                    p.setHealth(p.getMaxHealth());
+                    p.setFoodLevel(20);
 
                     if (players.size() >= maxPlayers) {
                         broadcastMessage("Game is starting...");
@@ -80,8 +93,14 @@ public class Arena {
                 p.teleport(playerLoc.get(p.getUniqueId()));
             }
 
+            if (playerInv.containsKey(p.getUniqueId())) {
+                p.getInventory().clear();
+                p.getInventory().setContents(playerInv.get(p.getUniqueId()));
+            }
+
+            playerInv.remove(p.getUniqueId());
+            playerLoc.remove(p.getUniqueId());
             players.remove(p.getUniqueId());
-            p.sendMessage("You left the game.");
         }
     }
 
@@ -92,19 +111,23 @@ public class Arena {
 
     public void reset() {
         for (int i = 0; i < players.size(); i++) {
-            Player p  = Bukkit.getPlayer(players.get(i));
+            Player p = Bukkit.getPlayer(players.get(i));
 
             if (playerLoc.containsKey(p.getUniqueId())) {
                 p.teleport(playerLoc.get(p.getUniqueId()));
-                playerLoc.remove(p.getUniqueId());
+            }
+
+            if (playerInv.containsKey(p.getUniqueId())) {
+                p.getInventory().clear();
+                p.getInventory().setContents(playerInv.get(p.getUniqueId()));
             }
         }
 
         players.clear();
-        setState(GameState.IDLE);
+        playerLoc.clear();
+        playerInv.clear();
         timer.reset();
     }
-
 
     // Getters
     public String getArenaName() {
@@ -131,6 +154,10 @@ public class Arena {
         return playerTwoLoc;
     }
 
+    public String getWinner() {
+        return  this.winner;
+    }
+
     // Setters
     public void setState(GameState state) {
         this.state = state;
@@ -146,6 +173,10 @@ public class Arena {
 
     public void setPlayerTwoSpawn(Location loc) {
         this.playerTwoLoc = loc;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
     }
 
 }

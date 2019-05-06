@@ -1,5 +1,6 @@
 package xyz.mukri.duels.arena;
 
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 import xyz.mukri.duels.Core;
 
@@ -59,8 +60,13 @@ public class Timer extends BukkitRunnable {
         if (arena.getState() == GameState.END) {
             end--;
 
+            if (end == 5) {
+                arena.broadcastMessage("Winner is: " + arena.getWinner());
+            }
+
             if (end == 0) {
                 arena.reset();
+                arena.setState(GameState.IDLE);
             }
         }
 

@@ -19,6 +19,11 @@ public class JoinAndQuitEvents implements Listener {
                 arena.userLeave(p);
             }
         }
+
+        // Will remove whoever is in the settings menu
+        if (Core.getInstance().playerSettings.containsKey(p)) {
+            Core.getInstance().playerSettings.remove(p);
+        }
     }
 
 }
