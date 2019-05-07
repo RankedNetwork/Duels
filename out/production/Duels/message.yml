@@ -1,0 +1,7 @@
+join-game-msg: "%player$ joined the game"
+left-game-msg: "%player% left the game"
+
+this:
+  is:
+    a: true
+    b: 1

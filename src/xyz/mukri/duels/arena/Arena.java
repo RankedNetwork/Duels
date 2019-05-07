@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import xyz.mukri.duels.file.PlayerFile;
 
 import java.util.*;
 
@@ -25,8 +26,8 @@ public class Arena {
 
     private Timer timer;
 
-    public Map<UUID, Location> playerLoc;
-    public Map<UUID, ItemStack[]> playerInv;
+    private Map<UUID, Location> playerLoc;
+    private Map<UUID, ItemStack[]> playerInv;
 
     public Arena( String name, Location spawnLoc, Location playerOne, Location playerTwo) {
         this.name = name;
@@ -55,6 +56,13 @@ public class Arena {
     }
 
     public void userJoin(Player p) {
+        PlayerFile playerFile = new PlayerFile(p);
+
+        if (!playerFile.isExists()) {
+            playerFile.createNewFile();
+            playerFile.save();
+        }
+
         if (!players.contains(p.getUniqueId())) {
             if (spawnLoc != null || playerOneLoc != null || playerTwoLoc != null) {
                 if (players.size() < maxPlayers) {

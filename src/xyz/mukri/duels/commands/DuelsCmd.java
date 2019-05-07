@@ -6,6 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.mukri.duels.Core;
 import xyz.mukri.duels.arena.Arena;
+import xyz.mukri.duels.file.ArenaFile;
+import xyz.mukri.duels.file.KitFile;
+import xyz.mukri.duels.file.MsgFile;
 import xyz.mukri.duels.utils.CustomInventory;
 
 public class DuelsCmd implements CommandExecutor {
@@ -26,7 +29,9 @@ public class DuelsCmd implements CommandExecutor {
 
             if (args.length == 0) {
                 // TODO: Send help messages etc
-
+                Core.getInstance().kitFile.giveKit(p);
+                Core.getInstance().kitFile.giveArmor(p);
+                Core.getInstance().kitFile.createNewKit(p, "test");
                 return false;
             }
 
@@ -44,6 +49,16 @@ public class DuelsCmd implements CommandExecutor {
                             p.sendMessage("You are not in a game");
                         }
                     }
+                }
+
+                else if (args[0].equalsIgnoreCase("reload")) {
+                    // TODO: Update arena
+
+                    Core.getInstance().kitFile = new KitFile();
+                    Core.getInstance().msgFile = new MsgFile();
+                    Core.getInstance().arenaFile = new ArenaFile();
+
+                    p.sendMessage("Reloaded.");
                 }
 
             }

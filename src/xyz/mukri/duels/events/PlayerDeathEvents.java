@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import xyz.mukri.duels.Core;
 import xyz.mukri.duels.arena.Arena;
 import xyz.mukri.duels.arena.GameState;
@@ -46,6 +47,19 @@ public class PlayerDeathEvents implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerDiedMsg(PlayerDeathEvent e) {
+        Player p = e.getEntity();
+        Arena arena = plugin.arenaManager.getPlayersArena(p.getUniqueId());
+
+        if (arena != null) {
+            if (arena.getPlayers().contains(p.getUniqueId())) {
+                e.setDeathMessage(null);
+            }
+        }
+
     }
 
 }

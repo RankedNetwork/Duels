@@ -9,6 +9,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.mukri.duels.arena.Arena;
 import xyz.mukri.duels.arena.ArenaManager;
+import xyz.mukri.duels.file.KitFile;
+import xyz.mukri.duels.file.MsgFile;
 import xyz.mukri.duels.commands.DuelsCmd;
 import xyz.mukri.duels.events.InventoryEvents;
 import xyz.mukri.duels.events.JoinAndQuitEvents;
@@ -23,7 +25,10 @@ import java.util.Map;
 public class Core extends JavaPlugin {
 
     private static Core instance;
+
     public ArenaFile arenaFile;
+    public MsgFile msgFile;
+    public KitFile kitFile;
     public ArenaManager arenaManager;
 
     public Map<Player, Arena> playerSettings = new HashMap<>();
@@ -33,6 +38,8 @@ public class Core extends JavaPlugin {
         instance = this;
 
         arenaFile = new ArenaFile();
+        msgFile = new MsgFile();
+        kitFile = new KitFile();
 
         if (!arenaFile.isFileExists()) {
             arenaFile.createNewFile();

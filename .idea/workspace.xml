@@ -7,13 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aebc17c9-f476-4d75-9ef3-750101684444" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDamageEvents.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDeathEvents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kits.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/message.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/file/KitFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/file/MsgFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/file/PlayerFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/Core.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/Core.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/arena/Arena.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/arena/Arena.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/arena/Timer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/arena/Timer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/commands/DuelsCmd.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/commands/DuelsCmd.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/events/PlayerDeathEvents.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duels/xyz/mukri/duels/events/PlayerDeathEvents.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xyz/mukri/duels/Core.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/Core.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xyz/mukri/duels/arena/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/arena/Arena.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xyz/mukri/duels/arena/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/arena/Timer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xyz/mukri/duels/events/JoinAndQuitEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/events/JoinAndQuitEvents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xyz/mukri/duels/commands/DuelsCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/commands/DuelsCmd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDeathEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDeathEvents.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,24 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/Core.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1359#1360#0" expanded="true" />
-                <element signature="e#1422#1423#0" expanded="true" />
-                <element signature="e#1593#1594#0" expanded="true" />
-                <element signature="e#1624#1625#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/JoinAndQuitEvents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="357">
+              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,36 +49,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/InventoryEvents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/arena/Arena.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="112" column="27" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
+            <state relative-caret-position="-981">
+              <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3813#3814#0" expanded="true" />
-                <element signature="e#3886#3887#0" expanded="true" />
-                <element signature="e#3956#3957#0" expanded="true" />
-                <element signature="e#4024#4025#0" expanded="true" />
-                <element signature="e#4102#4103#0" expanded="true" />
-                <element signature="e#4180#4181#0" expanded="true" />
-                <element signature="e#4248#4249#0" expanded="true" />
-                <element signature="e#4342#4343#0" expanded="true" />
-                <element signature="e#4419#4420#0" expanded="true" />
-                <element signature="e#4509#4510#0" expanded="true" />
-                <element signature="e#4599#4600#0" expanded="true" />
-                <element signature="e#4679#4680#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,46 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/commands/DuelsCmd.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-561">
-              <caret line="82" column="60" selection-start-line="82" selection-start-column="60" selection-end-line="82" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDamageEvents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDeathEvents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#226#227#0" expanded="true" />
-                <element signature="e#262#263#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/arena/ArenaManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="66" column="80" lean-forward="true" selection-start-line="66" selection-start-column="80" selection-end-line="66" selection-end-column="80" />
+            <state relative-caret-position="323">
+              <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -144,7 +75,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/file/ArenaFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="952">
               <caret line="69" column="48" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -156,10 +87,74 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/arena/Timer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+            <state relative-caret-position="901">
+              <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#434#435#0" expanded="true" />
+                <element signature="e#494#495#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/file/MsgFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#595#596#0" expanded="true" />
+                <element signature="e#631#632#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/file/KitFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/kits.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="44" selection-start-column="44" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/message.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/file/PlayerFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="529">
+              <caret line="71" column="45" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#850#851#0" expanded="true" />
+                <element signature="e#879#880#0" expanded="true" />
+                <element signature="e#1353#1354#0" expanded="true" />
+                <element signature="e#1400#1401#0" expanded="true" />
+                <element signature="e#1440#1441#0" expanded="true" />
+                <element signature="e#1496#1497#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,14 +186,19 @@
         <option value="$PROJECT_DIR$/src/xyz/mukri/duels/arena/GameState.java" />
         <option value="$PROJECT_DIR$/src/xyz/mukri/duels/utils/CustomInventory.java" />
         <option value="$PROJECT_DIR$/src/xyz/mukri/duels/arena/ArenaManager.java" />
-        <option value="$PROJECT_DIR$/src/xyz/mukri/duels/commands/DuelsCmd.java" />
         <option value="$PROJECT_DIR$/src/xyz/mukri/duels/events/InventoryEvents.java" />
         <option value="$PROJECT_DIR$/src/xyz/mukri/duels/events/JoinAndQuitEvents.java" />
         <option value="$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDamageEvents.java" />
-        <option value="$PROJECT_DIR$/src/xyz/mukri/duels/Core.java" />
         <option value="$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDeathEvents.java" />
+        <option value="$PROJECT_DIR$/src/xyz/mukri/duels/file/PlayerFile.java" />
         <option value="$PROJECT_DIR$/src/xyz/mukri/duels/arena/Timer.java" />
+        <option value="$PROJECT_DIR$/src/message.yml" />
+        <option value="$PROJECT_DIR$/src/xyz/mukri/duels/arena/MsgFile.java" />
+        <option value="$PROJECT_DIR$/src/xyz/mukri/duels/Core.java" />
         <option value="$PROJECT_DIR$/src/xyz/mukri/duels/arena/Arena.java" />
+        <option value="$PROJECT_DIR$/src/kits.yml" />
+        <option value="$PROJECT_DIR$/src/xyz/mukri/duels/commands/DuelsCmd.java" />
+        <option value="$PROJECT_DIR$/src/xyz/mukri/duels/file/KitFile.java" />
       </list>
     </option>
   </component>
@@ -217,7 +217,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,19 +254,13 @@
               <item name="Duels" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="duels" type="462c0819:PsiDirectoryNode" />
-              <item name="events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Duels" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Duels" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="duels" type="462c0819:PsiDirectoryNode" />
               <item name="file" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -309,8 +302,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1368" y="-244" width="1376" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2575988" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26519758" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -370,66 +364,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/Core.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1359#1360#0" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
-            <element signature="e#1593#1594#0" expanded="true" />
-            <element signature="e#1624#1625#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/arena/ArenaManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="66" column="80" lean-forward="true" selection-start-line="66" selection-start-column="80" selection-end-line="66" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/file/ArenaFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="69" column="48" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDeathEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#226#227#0" expanded="true" />
-            <element signature="e#262#263#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDamageEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/JoinAndQuitEvents.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="272">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -438,52 +376,144 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/InventoryEvents.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+        <state relative-caret-position="1258">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDamageEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/arena/ArenaManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="66" column="80" selection-start-line="66" selection-start-column="80" selection-end-line="66" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/events/PlayerDeathEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-219">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/Core.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/file/ArenaFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="69" column="48" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/message.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/arena/Timer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+        <state relative-caret-position="901">
+          <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/commands/DuelsCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-561">
-          <caret line="82" column="60" selection-start-line="82" selection-start-column="60" selection-end-line="82" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#434#435#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/arena/Arena.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="112" column="27" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
+        <state relative-caret-position="-981">
+          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3813#3814#0" expanded="true" />
-            <element signature="e#3886#3887#0" expanded="true" />
-            <element signature="e#3956#3957#0" expanded="true" />
-            <element signature="e#4024#4025#0" expanded="true" />
-            <element signature="e#4102#4103#0" expanded="true" />
-            <element signature="e#4180#4181#0" expanded="true" />
-            <element signature="e#4248#4249#0" expanded="true" />
-            <element signature="e#4342#4343#0" expanded="true" />
-            <element signature="e#4419#4420#0" expanded="true" />
-            <element signature="e#4509#4510#0" expanded="true" />
-            <element signature="e#4599#4600#0" expanded="true" />
-            <element signature="e#4679#4680#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/file/MsgFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#595#596#0" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/file/PlayerFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="71" column="45" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#850#851#0" expanded="true" />
+            <element signature="e#879#880#0" expanded="true" />
+            <element signature="e#1353#1354#0" expanded="true" />
+            <element signature="e#1400#1401#0" expanded="true" />
+            <element signature="e#1440#1441#0" expanded="true" />
+            <element signature="e#1496#1497#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/kits.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="44" selection-start-column="44" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/commands/DuelsCmd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz/mukri/duels/file/KitFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

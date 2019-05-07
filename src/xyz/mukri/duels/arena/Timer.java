@@ -54,6 +54,7 @@ public class Timer extends BukkitRunnable {
             if (start == 0) {
                 arena.setState(GameState.END);
                 arena.broadcastMessage("Ended!");
+                arena.setWinner("No one!");
             }
         }
 
