@@ -2,11 +2,12 @@
 # For Armor: MATERIAL:NAME:ENCHANEMENT-LVL (Enchanements is unlimited)
 kits:
   default:
+    display: "DIAMOND_SWORD:1:0:&cThis is a lore:&cThis is another lore"
     armor:
       - "DIAMOND_HELMET:$cLol!:PROTECTION_ENVIRONMENTAL-4"
-      - "DIAMOND_HELMET:$cLol!:PROTECTION_ENVIRONMENTAL-4"
+      - "DIAMOND_CHESTPLATE:$cLol!:PROTECTION_ENVIRONMENTAL-4"
       - "DIAMOND_LEGGINGS:&c&lKaki:PROTECTION_ENVIRONMENTAL-4"
-      - "DIAMOND_LEGGINGS:&cNike:PROTECTION_ENVIRONMENTAL-4"
+      - "DIAMOND_BOOTS:&cNike:PROTECTION_ENVIRONMENTAL-4"
     items:
-      - "DIAMOND_SWORD:1:0:&fThis is a Name:DAMAGE-1:DURABILITY-2"
+      - "DIAMOND_SWORD:1:0:&fThis is a Name:DAMAGE_ALL-1:DURABILITY-2"
       - "DIAMOND:64:0:&This is the name"

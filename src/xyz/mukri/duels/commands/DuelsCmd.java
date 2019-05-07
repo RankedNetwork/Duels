@@ -32,6 +32,7 @@ public class DuelsCmd implements CommandExecutor {
                 Core.getInstance().kitFile.giveKit(p);
                 Core.getInstance().kitFile.giveArmor(p);
                 Core.getInstance().kitFile.createNewKit(p, "test");
+                CustomInventory.getKitGUI(p);
                 return false;
             }
 

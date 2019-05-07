@@ -2,9 +2,11 @@ package xyz.mukri.duels.arena;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import xyz.mukri.duels.Core;
 import xyz.mukri.duels.file.PlayerFile;
 
 import java.util.*;
@@ -28,6 +30,8 @@ public class Arena {
 
     private Map<UUID, Location> playerLoc;
     private Map<UUID, ItemStack[]> playerInv;
+    private Map<UUID, ItemStack[]> playerArmor;
+    private Map<UUID, String> playerKit;
 
     public Arena( String name, Location spawnLoc, Location playerOne, Location playerTwo) {
         this.name = name;
@@ -43,6 +47,8 @@ public class Arena {
         players =  new ArrayList<>();
         playerLoc = new HashMap<>();
         playerInv = new HashMap<>();
+        playerKit = new HashMap<>();
+        playerArmor = new HashMap<>();
 
         timer = new Timer(this);
         timer.start();
@@ -71,11 +77,16 @@ public class Arena {
 
                     playerInv.put(p.getUniqueId(), p.getInventory().getContents());
                     playerLoc.put(p.getUniqueId(), p.getLocation());
+                    playerArmor.put(p.getUniqueId(), p.getInventory().getArmorContents());
 
+                    p.getInventory().setArmorContents(null);
                     p.getInventory().clear();
                     p.teleport(spawnLoc);
                     p.setHealth(p.getMaxHealth());
                     p.setFoodLevel(20);
+
+                    // Add lobby items
+                    p.getInventory().addItem(Core.getInstance().createItem(Material.BOW, "§Kit Selector", Arrays.asList("Right-click to select your kit.")));
 
                     if (players.size() >= maxPlayers) {
                         broadcastMessage("Game is starting...");
@@ -106,6 +117,12 @@ public class Arena {
                 p.getInventory().setContents(playerInv.get(p.getUniqueId()));
             }
 
+            if (playerArmor.containsKey(p.getUniqueId())) {
+                p.getInventory().setArmorContents(null);
+                p.getInventory().setArmorContents(playerArmor.get(p.getUniqueId()));
+            }
+
+            playerArmor.remove(p.getUniqueId());
             playerInv.remove(p.getUniqueId());
             playerLoc.remove(p.getUniqueId());
             players.remove(p.getUniqueId());
@@ -129,11 +146,18 @@ public class Arena {
                 p.getInventory().clear();
                 p.getInventory().setContents(playerInv.get(p.getUniqueId()));
             }
+
+            if (playerArmor.containsKey(p.getUniqueId())) {
+                p.getInventory().setArmorContents(null);
+                p.getInventory().setArmorContents(playerArmor.get(p.getUniqueId()));
+            }
         }
 
         players.clear();
         playerLoc.clear();
         playerInv.clear();
+        playerArmor.clear();
+        playerKit.clear();
         timer.reset();
     }
 
@@ -144,6 +168,10 @@ public class Arena {
 
     public List<UUID> getPlayers() {
         return this.players;
+    }
+
+    public Map<UUID, String> getPlayerKits() {
+        return this.playerKit;
     }
 
     public Location getSpawn() {

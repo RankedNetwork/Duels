@@ -5,10 +5,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import xyz.mukri.duels.Core;
 import xyz.mukri.duels.arena.Arena;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CustomInventory {
 
@@ -40,5 +44,38 @@ public class CustomInventory {
         }
 
         p.openInventory(inv);
+    }
+
+    public static void getKitGUI(Player p) {
+        Inventory inv = Bukkit.createInventory(null, 45, "§7Kit Selector");
+
+
+        for (String kit : Core.getInstance().kitFile.getConfig().getConfigurationSection("kits").getKeys(false)) {
+            String[] items = Core.getInstance().kitFile.getConfig().getString("kits." + kit + ".display").split(":");
+
+            ItemStack item = new ItemStack(Material.valueOf(items[0]), Integer.valueOf(items[1]), Byte.valueOf(items[2]));
+            ItemMeta meta = item.getItemMeta();
+            List<String> lore = new ArrayList<>();
+
+            meta.setDisplayName("§7Kit: §a" + kit);
+
+            if (items.length > 3) {
+                for (int i = 3; i < items.length; i++) {
+                    lore.add(items[i].replace("&", "§"));
+                }
+            }
+
+            if (!lore.isEmpty()) {
+                meta.setLore(lore);
+            }
+
+            item.setItemMeta(meta);
+
+            inv.addItem(item);
+
+        }
+
+        p.openInventory(inv);
+
     }
 }

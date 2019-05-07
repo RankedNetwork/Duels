@@ -42,6 +42,10 @@ public class KitFile {
         }
     }
 
+    public FileConfiguration getConfig() {
+        return this.config;
+    }
+
     // Testing purpose
     public void giveKit(Player p) {
         List<String> list = config.getStringList("kits.default.items");

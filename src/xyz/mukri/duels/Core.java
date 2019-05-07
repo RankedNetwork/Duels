@@ -9,13 +9,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.mukri.duels.arena.Arena;
 import xyz.mukri.duels.arena.ArenaManager;
+import xyz.mukri.duels.events.*;
 import xyz.mukri.duels.file.KitFile;
 import xyz.mukri.duels.file.MsgFile;
 import xyz.mukri.duels.commands.DuelsCmd;
-import xyz.mukri.duels.events.InventoryEvents;
-import xyz.mukri.duels.events.JoinAndQuitEvents;
-import xyz.mukri.duels.events.PlayerDamageEvents;
-import xyz.mukri.duels.events.PlayerDeathEvents;
 import xyz.mukri.duels.file.ArenaFile;
 
 import java.util.HashMap;
@@ -79,6 +76,7 @@ public class Core extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new JoinAndQuitEvents(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathEvents(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDamageEvents(this), this);
+        getServer().getPluginManager().registerEvents(new ItemsInteractEvents(), this);
     }
 
     public static Core getInstance() {
