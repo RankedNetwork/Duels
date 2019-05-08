@@ -47,6 +47,10 @@ public class ArenaManager {
         arenas.add(a);
     }
 
+    public void removeArena(Arena a) {
+        arenas.remove(a);
+    }
+
     public void loadAllArena() {
 
         if (plugin.arenaFile.getConfig().getConfigurationSection("arena") == null) {

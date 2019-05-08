@@ -64,6 +64,10 @@ public class MsgFile {
                 .replaceAll("%kit%", kitName);
     }
 
+    public String getNoPermissionsMsg() {
+        return config.getString("player.no-permissions").replaceAll("&", "§");
+    }
+
     // Arena
     public String getArenaFullMsg() {
         return config.getString("arena.arena-full").replaceAll("&", "§");
@@ -117,8 +121,13 @@ public class MsgFile {
         return config.getString("admin.arena-not-exists").replaceAll("&", "§").replaceAll("%arenaname%", arenaName);
     }
 
+    public String getArenaRemoved(String arenaName) {
+        return config.getString("admin.arena-removed").replaceAll("&", "§").replaceAll("%arenaname%", arenaName);
+    }
+
     public String getLocationNotSet() {
         return config.getString("admin.location-not-set").replaceAll("&", "§");
     }
+
 
 }

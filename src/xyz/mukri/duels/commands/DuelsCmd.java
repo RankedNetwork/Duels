@@ -28,8 +28,9 @@ public class DuelsCmd implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("duels")) {
 
             if (args.length == 0) {
-                // TODO: Send help messages etc
-                CustomInventory.getArenaListGUI(p);
+                if (p.hasPermission("duels.players")) {
+                    CustomInventory.getArenaListGUI(p);
+                }
                 return false;
             }
 
@@ -37,26 +38,50 @@ public class DuelsCmd implements CommandExecutor {
             else if (args.length == 1) {
 
                 if (args[0].equalsIgnoreCase("leave")) {
-                    Arena arena = Core.getInstance().arenaManager.getPlayersArena(p.getUniqueId());
+                    if (p.hasPermission("duels.players")) {
+                        Arena arena = Core.getInstance().arenaManager.getPlayersArena(p.getUniqueId());
 
-                    if (arena != null) {
-                        if (arena.getPlayers().contains(p.getUniqueId())) {
-                            arena.userLeave(p);
-                        }
-                        else {
-                            p.sendMessage(Core.getInstance().msgFile.getYouareNotIngameMsg());
+                        if (arena != null) {
+                            if (arena.getPlayers().contains(p.getUniqueId())) {
+                                arena.userLeave(p);
+                            } else {
+                                p.sendMessage(Core.getInstance().msgFile.getYouareNotIngameMsg());
+                            }
                         }
                     }
                 }
 
                 else if (args[0].equalsIgnoreCase("reload")) {
-                    // TODO: Update arena
 
-                    Core.getInstance().kitFile = new KitFile();
-                    Core.getInstance().msgFile = new MsgFile();
-                    Core.getInstance().arenaFile = new ArenaFile();
+                    if (p.hasPermission("duels.admin")) {
 
-                    p.sendMessage(Core.getInstance().msgFile.getReloadedMsg());
+                        Core.getInstance().kitFile = new KitFile();
+                        Core.getInstance().msgFile = new MsgFile();
+                        Core.getInstance().arenaFile = new ArenaFile();
+
+                        p.sendMessage(Core.getInstance().msgFile.getReloadedMsg());
+
+                    }
+                }
+
+                else if (args[0].equalsIgnoreCase("help")) {
+                    if (p.hasPermission("duels.help")) {
+                        p.sendMessage(" ");
+                        p.sendMessage("/duels - Open Arena GUI");
+                        p.sendMessage("/duels leave - Leave an arena");
+                        p.sendMessage("/duels join <arena> - Join an arena");
+                        p.sendMessage("/duels reload - Reload all .yml");
+                        p.sendMessage("/duels addarena <arena> - Create an arena");
+                        p.sendMessage("/duels delarena <arena> - Delete an arena");
+                        p.sendMessage("/duels settings <arena> - Set an arena");
+                        p.sendMessage("/duels setspawn1 <arena> - Set playerone spawn");
+                        p.sendMessage("/duels setspawn2 <arena> - Set playertwo spawn");
+                        p.sendMessage("/duels setspawn <arena> - Set main spawn");
+                        p.sendMessage(" ");
+                    }
+                    else {
+
+                    }
                 }
 
             }
@@ -65,6 +90,11 @@ public class DuelsCmd implements CommandExecutor {
             else if (args.length == 2) {
 
                 if (args[0].equalsIgnoreCase("addarena")) {
+                    if (!p.hasPermission("duels.admin")) {
+                        p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
+                        return false;
+                    }
+
                     String arenaName = args[1];
 
                     Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
@@ -83,7 +113,32 @@ public class DuelsCmd implements CommandExecutor {
                     }
                 }
 
+                else if (args[0].equalsIgnoreCase("delarena")) {
+                    if (!p.hasPermission("duels.admin")) {
+                        p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
+                        return false;
+                    }
+
+                    String arenaName = args[1];
+
+                    Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
+
+                    if (arena != null) {
+                        Core.getInstance().arenaManager.removeArena(arena);
+                        Core.getInstance().arenaFile.getConfig().set("arena." + arena.getArenaName(), null);
+                        p.sendMessage(Core.getInstance().msgFile.getArenaRemoved(arenaName));
+                    }
+                    else {
+                        p.sendMessage(Core.getInstance().msgFile.getArenaDoesNotExists(arenaName));
+                    }
+                }
+
                 else if (args[0].equalsIgnoreCase("setspawn")) {
+                    if (!p.hasPermission("duels.admin")) {
+                        p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
+                        return false;
+                    }
+
                     String arenaName = args[1];
 
                     Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
@@ -102,6 +157,11 @@ public class DuelsCmd implements CommandExecutor {
                 }
 
                 else if (args[0].equalsIgnoreCase("setspawn1")) {
+                    if (!p.hasPermission("duels.admin")) {
+                        p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
+                        return false;
+                    }
+
                     String arenaName = args[1];
 
                     Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
@@ -120,6 +180,11 @@ public class DuelsCmd implements CommandExecutor {
                 }
 
                 else if (args[0].equalsIgnoreCase("setspawn2")) {
+                    if (!p.hasPermission("duels.admin")) {
+                        p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
+                        return false;
+                    }
+
                     String arenaName = args[1];
 
                     Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
@@ -138,6 +203,11 @@ public class DuelsCmd implements CommandExecutor {
                 }
 
                 else if (args[0].equals("join")) {
+                    if (!p.hasPermission("duels.players")) {
+                        p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
+                        return false;
+                    }
+
                     String arenaName = args[1];
 
                     Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
@@ -151,6 +221,11 @@ public class DuelsCmd implements CommandExecutor {
                 }
 
                 else if (args[0].equalsIgnoreCase("settings")) {
+                    if (!p.hasPermission("duels.admin")) {
+                        p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
+                        return false;
+                    }
+
                     String arenaName = args[1];
 
                     Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
