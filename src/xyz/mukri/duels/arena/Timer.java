@@ -13,7 +13,7 @@ public class Timer extends BukkitRunnable {
 
     public Timer(Arena arena) {
         this.arena = arena;
-        this.start = 60;
+        this.start = arena.getMatchTime();
         this.lobby = 10;
         this.end = 10;
     }
@@ -23,7 +23,7 @@ public class Timer extends BukkitRunnable {
     }
 
     public void reset() {
-        this.start = 60;
+        this.start = arena.getMatchTime();
         this.lobby = 10;
         this.end = 10;
     }
@@ -41,14 +41,19 @@ public class Timer extends BukkitRunnable {
             if (lobby == 0) {
                 arena.setState(GameState.START);
                 arena.teleportToArena();
+                arena.givePlayerKits();
             }
         }
 
         if (arena.getState() == GameState.START) {
             start--;
 
-            if (start <= 60) {
-                arena.broadcastMessage("Time: " + start + "s");
+            if (start == 10) {
+                arena.broadcastMessage("Game will end in " + start  + "s");
+            }
+
+            if (start <=5) {
+                arena.broadcastMessage("Game will end in " + start + "s");
             }
 
             if (start == 0) {

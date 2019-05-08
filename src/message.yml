@@ -1,7 +1,17 @@
-join-game-msg: "%player$ joined the game"
-left-game-msg: "%player% left the game"
+# You can use & for color codes.
+# %player$ | %kit%
+player:
+  join: "%player% joined the game."
+  left: "%player% left the game."
+  arena-full: "The arena is full!"
+  arena-not-setup: "Arena has not been set up properly."
+  already-ingame: "You are already in a game."
+# %winner% | %time%
+game:
+  starting: "Game is starting..."
+  ending: "Game will end in %time%"
+  win:
+    - ""
+    - ""
+    - ""
 
-this:
-  is:
-    a: true
-    b: 1

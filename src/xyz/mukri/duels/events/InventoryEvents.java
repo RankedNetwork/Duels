@@ -121,10 +121,10 @@ public class InventoryEvents implements Listener {
                                 if (plugin.kitFile.getConfig().getConfigurationSection("kits." + kitsName[1]) != null) {
                                     if (arena.getPlayerKits().containsKey(p.getUniqueId())) {
                                         arena.getPlayerKits().remove(p.getUniqueId());
-                                        arena.getPlayerKits().put(p, kitsName[1]);
+                                        arena.getPlayerKits().put(p.getUniqueId(), kitsName[1]);
                                     }
                                     else {
-                                        arena.getPlayerKits().put(p, kitsName[1]);
+                                        arena.getPlayerKits().put(p.getUniqueId(), kitsName[1]);
                                     }
 
                                     p.closeInventory();
@@ -140,6 +140,35 @@ public class InventoryEvents implements Listener {
                     e.setCancelled(true);
                 }
 
+            }
+        }
+    }
+
+    @EventHandler
+    public void onDuelsJoin(InventoryClickEvent e) {
+        Player p = (Player) e.getWhoClicked();
+        Inventory inv = e.getClickedInventory();
+        ItemStack item = e.getCurrentItem();
+
+        if (inv == null) {
+            return;
+        }
+
+        if (inv.getName().equals("§a§lDuels")) {
+            e.setCancelled(true);
+            if (item != null) {
+                if (item.getType() != Material.AIR || item.getType() != null) {
+                    if (item.getType() == Material.DIAMOND_CHESTPLATE) {
+                        String[] arenaName = item.getItemMeta().getDisplayName().split("§7Arena: ");
+
+                        Arena arena = plugin.arenaManager.getArenaByName(arenaName[1]);
+
+                        if (arena != null) {
+                            p.closeInventory();
+                            arena.userJoin(p);
+                        }
+                    }
+                }
             }
         }
     }

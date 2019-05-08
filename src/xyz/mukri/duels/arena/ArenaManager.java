@@ -19,6 +19,10 @@ public class ArenaManager {
         this.plugin = plugin;
     }
 
+    public List<Arena> getAllArena() {
+        return this.arenas;
+    }
+
     public Arena getArenaByName(String name) {
         for (Arena a : this.arenas) {
             if (a.getArenaName().equals(name)) {
@@ -53,6 +57,7 @@ public class ArenaManager {
         for (String a : plugin.arenaFile.getConfig().getConfigurationSection("arena").getKeys(false)) {
 
             String arenaName = plugin.arenaFile.getConfig().getString("arena." + a + ".name");
+            int matchTimer = plugin.arenaFile.getConfig().getInt("arena." + a + ".match-time");
 
             Location playerOneLoc = plugin.arenaFile.getConfig().getString("arena." + a + ".spawn-one").equals("NONE")
                     ? null : plugin.getInstance().stringToLocation(plugin.arenaFile.getConfig().getString("arena." + a + ".spawn-one"));
@@ -64,9 +69,8 @@ public class ArenaManager {
                     ? null : plugin.getInstance().stringToLocation(plugin.arenaFile.getConfig().getString("arena." + a + ".spawn"));
 
 
-            Arena arena = new Arena(arenaName, loc, playerOneLoc, playerTwoLoc);
+            Arena arena = new Arena(arenaName, loc, playerOneLoc, playerTwoLoc, matchTimer);
             arenas.add(arena);
-
         }
 
         Core.getInstance().getLogger().info("Loaded all arenas.");

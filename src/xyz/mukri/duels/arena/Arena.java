@@ -14,6 +14,7 @@ import java.util.*;
 public class Arena {
 
     private int maxPlayers;
+    private int matchTime;
 
     private String name;
     private String winner;
@@ -33,7 +34,7 @@ public class Arena {
     private Map<UUID, ItemStack[]> playerArmor;
     private Map<UUID, String> playerKit;
 
-    public Arena( String name, Location spawnLoc, Location playerOne, Location playerTwo) {
+    public Arena( String name, Location spawnLoc, Location playerOne, Location playerTwo, int matchTime) {
         this.name = name;
         this.spawnLoc = spawnLoc;
         this.playerOneLoc = playerOne;
@@ -41,6 +42,7 @@ public class Arena {
         this.winner = null;
 
         maxPlayers = 2;
+        this.matchTime = matchTime;
 
         state = GameState.IDLE;
 
@@ -62,6 +64,11 @@ public class Arena {
     }
 
     public void userJoin(Player p) {
+        if (Core.getInstance().arenaManager.getPlayersArena(p.getUniqueId()) != null) {
+            p.sendMessage("You already ingame.");
+            return;
+        }
+
         PlayerFile playerFile = new PlayerFile(p);
 
         if (!playerFile.isExists()) {
@@ -78,6 +85,8 @@ public class Arena {
                     playerInv.put(p.getUniqueId(), p.getInventory().getContents());
                     playerLoc.put(p.getUniqueId(), p.getLocation());
                     playerArmor.put(p.getUniqueId(), p.getInventory().getArmorContents());
+
+                    broadcastMessage(p.getName() + " joined the game.");
 
                     p.getInventory().setArmorContents(null);
                     p.getInventory().clear();
@@ -108,6 +117,20 @@ public class Arena {
 
     public void userLeave(Player p) {
         if (players.contains(p.getUniqueId())) {
+            if (getState() == GameState.LOBBY) {
+                broadcastMessage(p.getName() + " left the game.");
+                setState(GameState.IDLE);
+                timer.reset();
+            }
+
+            if (getState() == GameState.START) {
+                p.damage(999);
+            }
+
+            if (getState() == GameState.IDLE) {
+                broadcastMessage(p.getName() + " left the game.");
+            }
+
             if (playerLoc.containsKey(p.getUniqueId())) {
                 p.teleport(playerLoc.get(p.getUniqueId()));
             }
@@ -126,6 +149,7 @@ public class Arena {
             playerInv.remove(p.getUniqueId());
             playerLoc.remove(p.getUniqueId());
             players.remove(p.getUniqueId());
+
         }
     }
 
@@ -161,6 +185,27 @@ public class Arena {
         timer.reset();
     }
 
+    public void givePlayerKits() {
+        for (int i = 0; i < players.size(); i++) {
+            Player p = Bukkit.getPlayer(getPlayers().get(i));
+
+            p.closeInventory();
+            p.getInventory().clear();
+            p.getInventory().setArmorContents(null);
+
+            p.setFoodLevel(100);
+            p.setHealth(p.getMaxHealth());
+
+            if (playerKit.containsKey(p.getUniqueId())) {
+                Core.getInstance().kitFile.givePlayerKit(p, playerKit.get(p.getUniqueId()));
+            }
+            else {
+                Core.getInstance().kitFile.givePlayerKit(p, Core.getInstance().kitFile.getDefaultKits());
+            }
+        }
+    }
+
+
     // Getters
     public String getArenaName() {
         return this.name;
@@ -192,6 +237,14 @@ public class Arena {
 
     public String getWinner() {
         return  this.winner;
+    }
+
+    public int getMatchTime() {
+        return this.matchTime;
+    }
+
+    public int getMaxPlayers() {
+        return this.maxPlayers;
     }
 
     // Setters

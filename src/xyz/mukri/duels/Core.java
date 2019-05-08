@@ -77,6 +77,8 @@ public class Core extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDeathEvents(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDamageEvents(this), this);
         getServer().getPluginManager().registerEvents(new ItemsInteractEvents(), this);
+        getServer().getPluginManager().registerEvents(new ItemDropsEvents(), this);
+        getServer().getPluginManager().registerEvents(new FoodEvents(), this);
     }
 
     public static Core getInstance() {

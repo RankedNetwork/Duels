@@ -29,10 +29,7 @@ public class DuelsCmd implements CommandExecutor {
 
             if (args.length == 0) {
                 // TODO: Send help messages etc
-                Core.getInstance().kitFile.giveKit(p);
-                Core.getInstance().kitFile.giveArmor(p);
-                Core.getInstance().kitFile.createNewKit(p, "test");
-                CustomInventory.getKitGUI(p);
+                CustomInventory.getArenaListGUI(p);
                 return false;
             }
 
@@ -75,7 +72,7 @@ public class DuelsCmd implements CommandExecutor {
                     if (arena == null) {
                         // TODO: Add arena to config and to the arena manager
 
-                        Arena newArena = new Arena(arenaName, null, null, null);
+                        Arena newArena = new Arena(arenaName, null, null, null, 120);
 
                         Core.getInstance().arenaManager.addArena(newArena);
                         Core.getInstance().arenaFile.addNewArena(arenaName);

@@ -65,6 +65,7 @@ public class ArenaFile {
         // TODO: add 1 to total arena and save everything.
 
         config.set("arena." + name + ".name", name);
+        config.set("arena." + name + ".match-time", 120);
         config.set("arena." + name + ".spawn", "NONE");
         config.set("arena." + name + ".spawn-one", "NONE");
         config.set("arena." + name + ".spawn-two", "NONE");

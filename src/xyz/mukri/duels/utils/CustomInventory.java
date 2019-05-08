@@ -16,6 +16,12 @@ import java.util.List;
 
 public class CustomInventory {
 
+    public Core plugin;
+
+    public CustomInventory(Core plugin) {
+        this.plugin = plugin;
+    }
+
     public static void openArenaSettings(Player p, Arena arena) {
         Inventory inv = Bukkit.createInventory(null, 27, "Arena: " + arena.getArenaName());
 
@@ -76,6 +82,21 @@ public class CustomInventory {
         }
 
         p.openInventory(inv);
-
     }
+
+    public static void getArenaListGUI(Player p) {
+        Inventory inv = Bukkit.createInventory(null, 45, "§a§lDuels");
+
+        for (Arena a : Core.getInstance().arenaManager.getAllArena()) {
+            String arenaName = a.getArenaName();
+            String arenaState = a.getState().toString();
+            int playersJoin = a.getPlayers().size();
+            int maxPlayers = a.getMaxPlayers();
+
+            inv.addItem(Core.getInstance().createItem(Material.DIAMOND_CHESTPLATE, "§7Arena: " + arenaName, Arrays.asList("", "§7State: §a" + arenaState, "§7Players: §a" + playersJoin + "/" + maxPlayers, " ", "§7Right-Click to join.")));
+        }
+
+        p.openInventory(inv);
+    }
+
 }
