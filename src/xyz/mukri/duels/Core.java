@@ -79,6 +79,7 @@ public class Core extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ItemsInteractEvents(), this);
         getServer().getPluginManager().registerEvents(new ItemDropsEvents(), this);
         getServer().getPluginManager().registerEvents(new FoodEvents(), this);
+        getServer().getPluginManager().registerEvents(new CommandProccessEvents(), this);
     }
 
     public static Core getInstance() {

@@ -43,8 +43,6 @@ public class ArenaFile {
             file.createNewFile();
 
             config.set("arena", new ArrayList<>());
-            //config.set("arena.test.name", "test");
-            //config.set("arena.test.spawn", "NONE");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,8 +60,6 @@ public class ArenaFile {
     }
 
     public void addNewArena(String name) {
-        // TODO: add 1 to total arena and save everything.
-
         config.set("arena." + name + ".name", name);
         config.set("arena." + name + ".match-time", 120);
         config.set("arena." + name + ".spawn", "NONE");

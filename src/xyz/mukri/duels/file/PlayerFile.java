@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class PlayerFile {
 
+    // TODO: UPDATE IT SOON
+
     public File file;
     public FileConfiguration config;
     public Player p;
