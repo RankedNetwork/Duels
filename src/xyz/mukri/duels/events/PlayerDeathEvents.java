@@ -41,7 +41,7 @@ public class PlayerDeathEvents implements Listener {
                         if (arena.getPlayers().get(0) == p.getUniqueId()) {
                             Player winner = Bukkit.getPlayer(arena.getPlayers().get(1));
 
-                            arena.broadcastMessage(winner.getName() + " slaughtered " + p.getName());
+                            arena.broadcastMessage(plugin.msgFile.getDeathMsg(p.getName(), winner.getName()));
 
                             winner.setHealth(p.getMaxHealth());
                             winner.getInventory().clear();
@@ -53,7 +53,7 @@ public class PlayerDeathEvents implements Listener {
                         else {
                             Player winner = Bukkit.getPlayer(arena.getPlayers().get(0));
 
-                            arena.broadcastMessage(winner.getName() + " slaughtered " + p.getName());
+                            arena.broadcastMessage(plugin.msgFile.getDeathMsg(p.getName(), winner.getName()));
 
                             winner.setHealth(p.getMaxHealth());
                             winner.getInventory().clear();

@@ -1,17 +1,34 @@
 # You can use & for color codes.
-# %player$ | %kit%
+
+# %player$ | %kit% | %killer%
 player:
-  join: "%player% joined the game."
-  left: "%player% left the game."
-  arena-full: "The arena is full!"
-  arena-not-setup: "Arena has not been set up properly."
-  already-ingame: "You are already in a game."
+  join: "&a%player% &fjoined the game."
+  left: "&a%player% &fleft the game."
+  already-ingame: "&cYou are already in a game."
+  not-ingame: "&cYou are not ingame"
+  death-msg: "&a&l%player% was rekt by %killer%"
+arena:
+  full: "&cThe arena is full!"
+  not-setup: "&cArena has not been set up properly."
+
 # %winner% | %time%
 game:
-  starting: "Game is starting..."
-  ending: "Game will end in %time%"
+  starting: "&aGame is starting..."
+  start-countdown: "Game is starting in &a%time%&fs"
+  ending: "Game will end in &c%time%&a"
+  ending-no-winner: "&c&lTied! No on wins."
   win:
     - ""
+    - "&aWinner: &c&l%winner%"
     - ""
-    - ""
+
+# %arenaname% | %spawn%
+admin:
+  reloaded: "&cAll .yml has been reloaded! If you made changes on the arena, please reload/restart the server."
+  arena-created: "&a%arenaname% has been made! Make sure to set them up /duels settings %arenaname%"
+  arena-already-exists: "&c%arenaname% already exists!"
+  set-spawn: "&aSpawn for %spawn% has been set."
+  arena-not-exists: "&cArena with the name %arenaname% does not exists!";
+
+
 

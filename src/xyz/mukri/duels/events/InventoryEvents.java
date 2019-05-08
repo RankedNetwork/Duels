@@ -34,7 +34,7 @@ public class InventoryEvents implements Listener {
             if (e.getClick() == ClickType.LEFT) {
                 if (slot == 12) {
                     if (arena.getPlayerOneSpawn() == null) {
-                        p.sendMessage("You have not set the location yet.");
+                        p.sendMessage(plugin.msgFile.getLocationNotSet());
                     }
                     else {
                         p.teleport(arena.getPlayerOneSpawn());
@@ -44,7 +44,7 @@ public class InventoryEvents implements Listener {
                 }
                 else if (slot == 13) {
                     if (arena.getPlayerTwoSpawn() == null) {
-                        p.sendMessage("You have not set the location yet.");
+                        p.sendMessage(plugin.msgFile.getLocationNotSet());
                     }
                     else {
                         p.teleport(arena.getPlayerTwoSpawn());
@@ -54,7 +54,7 @@ public class InventoryEvents implements Listener {
                 }
                 else if (slot == 14) {
                     if (arena.getSpawn() == null) {
-                        p.sendMessage("You have not set the location yet.");
+                        p.sendMessage(plugin.msgFile.getLocationNotSet());
                     }
                     else {
                         p.teleport(arena.getSpawn());
@@ -72,7 +72,7 @@ public class InventoryEvents implements Listener {
                     Core.getInstance().arenaFile.save();
 
                     p.closeInventory();
-                    p.sendMessage("Updated the spawn for player 1.");
+                    p.sendMessage(plugin.msgFile.getSetSpawnMsg("Player One"));
                 }
                 else if (slot == 13) {
                     arena.setPlayerTwoSpawn(p.getLocation());
@@ -81,7 +81,7 @@ public class InventoryEvents implements Listener {
                     Core.getInstance().arenaFile.save();
 
                     p.closeInventory();
-                    p.sendMessage("Updated the spawn for player 2.");
+                    p.sendMessage(plugin.msgFile.getSetSpawnMsg("Player Two"));
                 }
                 else if (slot == 14) {
                     arena.setSpawn(p.getLocation());
@@ -90,7 +90,7 @@ public class InventoryEvents implements Listener {
                     Core.getInstance().arenaFile.save();
 
                     p.closeInventory();
-                    p.sendMessage("Updated spawn location to your current location.");
+                    p.sendMessage(plugin.msgFile.getSetSpawnMsg("Main Spawn"));
                 }
             }
 
@@ -116,7 +116,7 @@ public class InventoryEvents implements Listener {
                             if (item.getType() != Material.AIR || item.getType() != null) {
                                 String[] kitsName = item.getItemMeta().getDisplayName().split("§7Kit: §a");
 
-                                p.sendMessage(kitsName[1]);
+                                p.sendMessage(plugin.msgFile.getKitMsg(kitsName[1]));
 
                                 if (plugin.kitFile.getConfig().getConfigurationSection("kits." + kitsName[1]) != null) {
                                     if (arena.getPlayerKits().containsKey(p.getUniqueId())) {

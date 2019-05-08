@@ -65,7 +65,7 @@ public class Arena {
 
     public void userJoin(Player p) {
         if (Core.getInstance().arenaManager.getPlayersArena(p.getUniqueId()) != null) {
-            p.sendMessage("You already ingame.");
+            p.sendMessage(Core.getInstance().msgFile.getAlreadyInGameMsg());
             return;
         }
 
@@ -86,7 +86,7 @@ public class Arena {
                     playerLoc.put(p.getUniqueId(), p.getLocation());
                     playerArmor.put(p.getUniqueId(), p.getInventory().getArmorContents());
 
-                    broadcastMessage(p.getName() + " joined the game.");
+                    broadcastMessage(Core.getInstance().msgFile.getJoinMsg(p.getName()));
 
                     p.getInventory().setArmorContents(null);
                     p.getInventory().clear();
@@ -98,27 +98,27 @@ public class Arena {
                     p.getInventory().addItem(Core.getInstance().createItem(Material.BOW, "§Kit Selector", Arrays.asList("Right-click to select your kit.")));
 
                     if (players.size() >= maxPlayers) {
-                        broadcastMessage("Game is starting...");
+                        broadcastMessage(Core.getInstance().msgFile.getGameStartingMsg());
                         setState(GameState.LOBBY);
                     }
                 }
                 else {
-                    p.sendMessage("Arena already full!");
+                    p.sendMessage(Core.getInstance().msgFile.getArenaFullMsg());
                 }
             }
             else {
-                p.sendMessage("Arena spawn has not been set.");
+                p.sendMessage(Core.getInstance().msgFile.getArenaNotSetupMsg());
             }
         }
         else {
-            p.sendMessage("You already ingame");
+            p.sendMessage(Core.getInstance().msgFile.getAlreadyInGameMsg());
         }
     }
 
     public void userLeave(Player p) {
         if (players.contains(p.getUniqueId())) {
             if (getState() == GameState.LOBBY) {
-                broadcastMessage(p.getName() + " left the game.");
+                broadcastMessage(Core.getInstance().msgFile.getLeftMsg(p.getName()));
                 setState(GameState.IDLE);
                 timer.reset();
             }
@@ -128,7 +128,7 @@ public class Arena {
             }
 
             if (getState() == GameState.IDLE) {
-                broadcastMessage(p.getName() + " left the game.");
+                broadcastMessage(Core.getInstance().msgFile.getLeftMsg(p.getName()));
             }
 
             if (playerLoc.containsKey(p.getUniqueId())) {

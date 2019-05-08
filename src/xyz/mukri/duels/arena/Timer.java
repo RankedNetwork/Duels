@@ -4,6 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 import xyz.mukri.duels.Core;
 
+import java.util.List;
+
 public class Timer extends BukkitRunnable {
 
     private Arena arena;
@@ -35,7 +37,7 @@ public class Timer extends BukkitRunnable {
             lobby--;
 
             if (lobby <= 5) {
-                arena.broadcastMessage("Game is starting in " + lobby + "s!");
+                arena.broadcastMessage(Core.getInstance().msgFile.getStartCountdownMsg(lobby));
             }
 
             if (lobby == 0) {
@@ -49,16 +51,16 @@ public class Timer extends BukkitRunnable {
             start--;
 
             if (start == 10) {
-                arena.broadcastMessage("Game will end in " + start  + "s");
+                arena.broadcastMessage(Core.getInstance().msgFile.getEndingMsg(start));
             }
 
             if (start <=5) {
-                arena.broadcastMessage("Game will end in " + start + "s");
+                arena.broadcastMessage(Core.getInstance().msgFile.getEndingMsg(start));
             }
 
             if (start == 0) {
                 arena.setState(GameState.END);
-                arena.broadcastMessage("Ended!");
+                arena.broadcastMessage(Core.getInstance().msgFile.getEndingTiedMsg());
                 arena.setWinner("No one!");
             }
         }
@@ -67,7 +69,12 @@ public class Timer extends BukkitRunnable {
             end--;
 
             if (end == 5) {
-                arena.broadcastMessage("Winner is: " + arena.getWinner());
+
+                List<String> msg = Core.getInstance().msgFile.getGameWinMsg();
+
+                for (String a : msg) {
+                    arena.broadcastMessage(a.replaceAll("&", "§").replaceAll("%winner%", arena.getWinner()));
+                }
             }
 
             if (end == 0) {

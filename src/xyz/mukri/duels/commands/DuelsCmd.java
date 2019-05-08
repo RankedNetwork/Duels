@@ -44,7 +44,7 @@ public class DuelsCmd implements CommandExecutor {
                             arena.userLeave(p);
                         }
                         else {
-                            p.sendMessage("You are not in a game");
+                            p.sendMessage(Core.getInstance().msgFile.getYouareNotIngameMsg());
                         }
                     }
                 }
@@ -56,7 +56,7 @@ public class DuelsCmd implements CommandExecutor {
                     Core.getInstance().msgFile = new MsgFile();
                     Core.getInstance().arenaFile = new ArenaFile();
 
-                    p.sendMessage("Reloaded.");
+                    p.sendMessage(Core.getInstance().msgFile.getReloadedMsg());
                 }
 
             }
@@ -70,17 +70,16 @@ public class DuelsCmd implements CommandExecutor {
                     Arena arena = Core.getInstance().arenaManager.getArenaByName(arenaName);
 
                     if (arena == null) {
-                        // TODO: Add arena to config and to the arena manager
 
                         Arena newArena = new Arena(arenaName, null, null, null, 120);
 
                         Core.getInstance().arenaManager.addArena(newArena);
                         Core.getInstance().arenaFile.addNewArena(arenaName);
 
-                        p.sendMessage("Added a new arena called '" + arenaName + "'.");
+                        p.sendMessage(Core.getInstance().msgFile.getArenaCreatedMsg(arenaName));
                     }
                     else {
-                        p.sendMessage("Arena with the name of '" + arenaName + "' already existed.");
+                        p.sendMessage(Core.getInstance().msgFile.getArenaAlreadyExistsMsg(arenaName));
                     }
                 }
 
@@ -94,10 +93,10 @@ public class DuelsCmd implements CommandExecutor {
 
                         Core.getInstance().arenaFile.setArenaSpawn(p.getLocation(), arena);
                         Core.getInstance().arenaFile.save();
-                        p.sendMessage("Updated spawn location to your current location.");
+                        p.sendMessage(Core.getInstance().msgFile.getSetSpawnMsg("Main Spawn"));
                     }
                     else {
-                        p.sendMessage("Arena '" + arenaName + "' does not exists.");
+                        p.sendMessage(Core.getInstance().msgFile.getArenaAlreadyExistsMsg(arenaName));
                     }
 
                 }
@@ -112,10 +111,10 @@ public class DuelsCmd implements CommandExecutor {
 
                         Core.getInstance().arenaFile.setPlayerSpawn(p.getLocation(), arena, 1);
                         Core.getInstance().arenaFile.save();
-                        p.sendMessage("Updated the spawn for player 1.");
+                        p.sendMessage(Core.getInstance().msgFile.getSetSpawnMsg("Player One"));
                     }
                     else {
-                        p.sendMessage("Arena '" + arenaName + "' does not exists.");
+                        p.sendMessage(Core.getInstance().msgFile.getArenaAlreadyExistsMsg(arenaName));
                     }
 
                 }
@@ -130,10 +129,10 @@ public class DuelsCmd implements CommandExecutor {
 
                         Core.getInstance().arenaFile.setPlayerSpawn(p.getLocation(), arena, 2);
                         Core.getInstance().arenaFile.save();
-                        p.sendMessage("Updated the spawn for player 2.");
+                        p.sendMessage(Core.getInstance().msgFile.getSetSpawnMsg("Player Two"));
                     }
                     else {
-                        p.sendMessage("Arena '" + arenaName + "' does not exists.");
+                        p.sendMessage(Core.getInstance().msgFile.getArenaAlreadyExistsMsg(arenaName));
                     }
 
                 }
@@ -147,7 +146,7 @@ public class DuelsCmd implements CommandExecutor {
                         arena.userJoin(p);
                     }
                     else {
-                        p.sendMessage("Arena does not exists!");
+                        p.sendMessage(Core.getInstance().msgFile.getArenaDoesNotExists(arenaName));
                     }
                 }
 
@@ -161,14 +160,14 @@ public class DuelsCmd implements CommandExecutor {
                         CustomInventory.openArenaSettings(p, arena);
                     }
                     else {
-                        p.sendMessage("Arena does not exists.");
+                        p.sendMessage(Core.getInstance().msgFile.getArenaDoesNotExists(arenaName));
                     }
                 }
 
             }
 
             else {
-                p.sendMessage("Unkown command! /Duels for help.");
+                p.sendMessage("§aUnkown command! /Duels help");
             }
 
         }
