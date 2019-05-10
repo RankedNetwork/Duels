@@ -76,6 +76,11 @@ public class Arena {
             playerFile.save();
         }
 
+        if (!Core.getInstance().storageFile.isPlayerExists(p)) {
+            Core.getInstance().storageFile.addPlayerUUID(p);
+            Core.getInstance().storageFile.save();
+        }
+
         if (!players.contains(p.getUniqueId())) {
             if (spawnLoc != null || playerOneLoc != null || playerTwoLoc != null) {
                 if (players.size() < maxPlayers) {
@@ -205,6 +210,29 @@ public class Arena {
         }
     }
 
+    public void addPlayerStats() {
+        for (int i = 0; i < players.size(); i++) {
+            Player p = Bukkit.getPlayer(players.get(i));
+
+            if (p.getName() == getWinner()) {
+                PlayerFile playerFile = new PlayerFile(p);
+
+                playerFile.addWin(1);
+                playerFile.addGamesPlayed(1);
+                playerFile.save();
+
+                if (Core.getInstance().storageFile.checkTop3(p, playerFile.getWin())) {
+                    Core.getInstance().storageFile.updateLeaderboards(p, playerFile.getWin());
+                }
+            }
+            else {
+                PlayerFile playerFile = new PlayerFile(p);
+
+                playerFile.addGamesPlayed(1);
+                playerFile.save();
+            }
+        }
+    }
 
     // Getters
     public String getArenaName() {

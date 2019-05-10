@@ -1,6 +1,6 @@
 # You can use & for color codes.
 
-# %player$ | %kit% | %killer%
+# %player$ | %kit% | %killer% | %top1/2/3%
 player:
   join: "&a%player% &fjoined the game."
   left: "&a%player% &fleft the game."
@@ -9,6 +9,13 @@ player:
   death-msg: "&a&l%player% was rekt by %killer%"
   kit-select: "&aYou select %kit% as your kit."
   no-permissions: "&cYou have no permissions to execute this commands."
+  top-3:
+    - " "
+    - "&a1. %top1%"
+    - "&a2. %top2%"
+    - "&a3. %top3%"
+    - " "
+
 arena:
   full: "&cThe arena is full!"
   not-setup: "&cArena has not been set up properly."

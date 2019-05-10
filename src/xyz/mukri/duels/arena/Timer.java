@@ -70,11 +70,15 @@ public class Timer extends BukkitRunnable {
 
             if (end == 5) {
 
+                arena.addPlayerStats();
+
                 List<String> msg = Core.getInstance().msgFile.getGameWinMsg();
 
                 for (String a : msg) {
                     arena.broadcastMessage(a.replaceAll("&", "§").replaceAll("%winner%", arena.getWinner()));
                 }
+
+
             }
 
             if (end == 0) {

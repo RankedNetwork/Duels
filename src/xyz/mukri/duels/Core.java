@@ -14,6 +14,7 @@ import xyz.mukri.duels.file.KitFile;
 import xyz.mukri.duels.file.MsgFile;
 import xyz.mukri.duels.commands.DuelsCmd;
 import xyz.mukri.duels.file.ArenaFile;
+import xyz.mukri.duels.file.StorageFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,7 @@ public class Core extends JavaPlugin {
     public ArenaFile arenaFile;
     public MsgFile msgFile;
     public KitFile kitFile;
+    public StorageFile storageFile;
     public ArenaManager arenaManager;
 
     public Map<Player, Arena> playerSettings = new HashMap<>();
@@ -37,9 +39,14 @@ public class Core extends JavaPlugin {
         arenaFile = new ArenaFile();
         msgFile = new MsgFile();
         kitFile = new KitFile();
+        storageFile = new StorageFile();
 
         if (!arenaFile.isFileExists()) {
             arenaFile.createNewFile();
+        }
+
+        if (!storageFile.isExists()) {
+            storageFile.createNewFile();
         }
 
         arenaManager = new ArenaManager(this);

@@ -68,6 +68,10 @@ public class MsgFile {
         return config.getString("player.no-permissions").replaceAll("&", "§");
     }
 
+    public List<String> getTop3Msg() {
+        return config.getStringList("player.top-3");
+    }
+
     // Arena
     public String getArenaFullMsg() {
         return config.getString("arena.arena-full").replaceAll("&", "§");

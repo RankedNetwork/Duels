@@ -9,7 +9,10 @@ import xyz.mukri.duels.arena.Arena;
 import xyz.mukri.duels.file.ArenaFile;
 import xyz.mukri.duels.file.KitFile;
 import xyz.mukri.duels.file.MsgFile;
+import xyz.mukri.duels.file.StorageFile;
 import xyz.mukri.duels.utils.CustomInventory;
+
+import java.util.List;
 
 public class DuelsCmd implements CommandExecutor {
 
@@ -51,6 +54,32 @@ public class DuelsCmd implements CommandExecutor {
                     }
                 }
 
+                else if (args[0].equalsIgnoreCase("top")) {
+                    if (p.hasPermission("duels.players")) {
+                        List<String> top3 = Core.getInstance().storageFile.getTop3();
+
+                        for (int i = 0; i < top3.size(); i++) {
+                            String[] s = top3.get(i).split(":");
+
+                            top3.set(i, s[0] + ": W: " + s[1]);
+                        }
+
+                        String p1 = top3.get(0);
+                        String p2 = top3.get(1);
+                        String p3 = top3.get(2);
+
+                        List<String> msgfromFile = Core.getInstance().msgFile.getTop3Msg();
+
+                        for (String msg : msgfromFile) {
+                            p.sendMessage(msg.replaceAll("%top1%", p1).replaceAll("%top2%", p2)
+                                    .replaceAll("%top3%", p3).replaceAll("&", "§"));
+                        }
+                    }
+                    else {
+                        p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
+                    }
+                }
+
                 else if (args[0].equalsIgnoreCase("reload")) {
 
                     if (p.hasPermission("duels.admin")) {
@@ -58,6 +87,7 @@ public class DuelsCmd implements CommandExecutor {
                         Core.getInstance().kitFile = new KitFile();
                         Core.getInstance().msgFile = new MsgFile();
                         Core.getInstance().arenaFile = new ArenaFile();
+                        Core.getInstance().storageFile = new StorageFile();
 
                         p.sendMessage(Core.getInstance().msgFile.getReloadedMsg());
 
@@ -80,8 +110,12 @@ public class DuelsCmd implements CommandExecutor {
                         p.sendMessage(" ");
                     }
                     else {
-
+                        p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
                     }
+                }
+
+                else {
+                    p.sendMessage("§aUnkown command! /Duels help");
                 }
 
             }
@@ -237,6 +271,9 @@ public class DuelsCmd implements CommandExecutor {
                     else {
                         p.sendMessage(Core.getInstance().msgFile.getArenaDoesNotExists(arenaName));
                     }
+                }
+                else {
+                    p.sendMessage("§aUnkown command! /Duels help");
                 }
 
             }
