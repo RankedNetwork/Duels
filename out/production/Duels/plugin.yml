@@ -1,8 +1,0 @@
-main: xyz.mukri.duels.Core
-name: Duels
-version: 1.0.0
-description: A duel minecraft plugin
-author: Mukri.xyz
-commands:
-  duels:
-    description: Duels commands.

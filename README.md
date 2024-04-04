@@ -1,15 +1,15 @@
-Minecraft 1v1/Duels plugins by Mukri.
-These plugins allow your server to have a 1v1 system. It allows multiple arenas and custom kits. Super easy to setup.
+Minecraft 1v1/Duels plugins by JustReddy (OG: Mukri).
+This is an edited and better version of the original plugin for ranked.network
 
 Features:
-- Multiple Arena
+- Multiple arenas
 - Custom kits
-- Simple setup with /duels settings <arena>
+- Simple setup with `/duels settings <arena>`
 - Fully customizable message.yml,
 - Using a GUI or commands to join a game
 
 How to setup?
-Drag and drop the .jar to your plugins folder. Start your server and then follow the instructions below.
+Drag and drop the .jar to your plugins folder, start your server and then follow the instructions below.
 
 1. /duels addarena <name>
 2. /duels settings <name>
